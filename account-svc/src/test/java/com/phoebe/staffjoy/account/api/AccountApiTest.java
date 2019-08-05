@@ -1,5 +1,15 @@
-package com.phoebe.staffjoy.account.controller;
+package com.phoebe.staffjoy.account.api;
 
+import com.phoebe.staffjoy.account.TestConfig;
+import com.phoebe.staffjoy.account.client.AccountClient;
+import com.phoebe.staffjoy.account.dto.*;
+import com.phoebe.staffjoy.account.model.Account;
+import com.phoebe.staffjoy.account.repo.AccountRepo;
+import com.phoebe.staffjoy.account.repo.AccountSecretRepo;
+import com.phoebe.staffjoy.common.api.BaseResponse;
+import com.phoebe.staffjoy.common.api.ResultCode;
+import com.phoebe.staffjoy.common.auth.AuthConstant;
+import com.phoebe.staffjoy.common.env.EnvConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.junit.After;
@@ -13,18 +23,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
-import xyz.staffjoy.account.TestConfig;
-import xyz.staffjoy.account.client.AccountClient;
-import xyz.staffjoy.account.dto.*;
-import xyz.staffjoy.account.model.Account;
-import xyz.staffjoy.account.repo.AccountRepo;
-import xyz.staffjoy.account.repo.AccountSecretRepo;
 import com.phoebe.staffjoy.bot.client.BotClient;
 import com.phoebe.staffjoy.bot.dto.GreetingRequest;
-import xyz.staffjoy.common.api.BaseResponse;
-import xyz.staffjoy.common.api.ResultCode;
-import xyz.staffjoy.common.auth.AuthConstant;
-import xyz.staffjoy.common.env.EnvConfig;
 import com.phoebe.staffjoy.mail.client.MailClient;
 import com.phoebe.staffjoy.mail.dto.EmailRequest;
 
@@ -39,7 +39,7 @@ import static org.mockito.Mockito.*;
 @EnableFeignClients(basePackages = {"xyz.staffjoy.account.client"})
 @Import(TestConfig.class)
 @Slf4j
-public class AccountControllerTest {
+public class AccountApiTest {
 
     @Autowired
     AccountClient accountClient;

@@ -1,11 +1,10 @@
 package com.phoebe.staffjoy.account;
 
+import com.phoebe.staffjoy.common.auth.AuthConstant;
 import feign.RequestInterceptor;
-import feign.RequestTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;
-import xyz.staffjoy.common.auth.AuthConstant;
 
 import java.util.UUID;
 
@@ -19,14 +18,10 @@ public class TestConfig {
 
     @Bean
     public RequestInterceptor requestInterceptor() {
-        return new RequestInterceptor() {
-            @Override
-            public void apply(RequestTemplate template) {
-                if (!StringUtils.isEmpty(TEST_USER_ID)) {
-                    template.header(AuthConstant.CURRENT_USER_HEADER, TEST_USER_ID);
-                }
+        return template -> {
+            if (!StringUtils.isEmpty(TEST_USER_ID)) {
+                template.header(AuthConstant.CURRENT_USER_HEADER, TEST_USER_ID);
             }
         };
     }
-
 }

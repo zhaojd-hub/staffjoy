@@ -1,4 +1,4 @@
-package com.phoebe.staffjoy.account.controller;
+package com.phoebe.staffjoy.account.api;
 
 import com.github.structlog4j.ILogger;
 import com.github.structlog4j.SLoggerFactory;
@@ -25,13 +25,12 @@ import javax.validation.constraints.NotBlank;
 @RestController
 @RequestMapping("/v1/account")
 @Validated
-public class AccountController {
+public class AccountApi {
 
-    static final ILogger logger = SLoggerFactory.getLogger(AccountController.class);
+    static final ILogger logger = SLoggerFactory.getLogger(AccountApi.class);
 
     @Autowired
     private AccountService accountService;
-
     @Autowired
     private EnvConfig envConfig;
 
@@ -44,8 +43,7 @@ public class AccountController {
     })
     public GenericAccountResponse getOrCreate(@RequestBody @Valid GetOrCreateRequest request) {
         AccountDto accountDto = accountService.getOrCreate(request.getName(), request.getEmail(), request.getPhoneNumber());
-        GenericAccountResponse genericAccountResponse = new GenericAccountResponse(accountDto);
-        return genericAccountResponse;
+        return new GenericAccountResponse(accountDto);
     }
 
     @PostMapping(path = "/create")
@@ -56,8 +54,7 @@ public class AccountController {
     })
     public GenericAccountResponse createAccount(@RequestBody @Valid CreateAccountRequest request) {
         AccountDto accountDto = accountService.create(request.getName(), request.getEmail(), request.getPhoneNumber());
-        GenericAccountResponse genericAccountResponse = new GenericAccountResponse(accountDto);
-        return genericAccountResponse;
+        return new GenericAccountResponse(accountDto);
     }
 
     @GetMapping(path = "/get_account_by_phonenumber")
@@ -68,8 +65,7 @@ public class AccountController {
     })
     public GenericAccountResponse getAccountByPhonenumber(@RequestParam @PhoneNumber String phoneNumber) {
         AccountDto accountDto = accountService.getAccountByPhoneNumber(phoneNumber);
-        GenericAccountResponse genericAccountResponse = new GenericAccountResponse(accountDto);
-        return genericAccountResponse;
+        return new GenericAccountResponse(accountDto);
     }
 
     @GetMapping(path = "/list")
@@ -78,8 +74,7 @@ public class AccountController {
     })
     public ListAccountResponse listAccounts(@RequestParam int offset, @RequestParam @Min(0) int limit) {
         AccountList accountList = accountService.list(offset, limit);
-        ListAccountResponse listAccountResponse = new ListAccountResponse(accountList);
-        return listAccountResponse;
+        return new ListAccountResponse(accountList);
     }
 
     @GetMapping(path = "/get")
@@ -98,9 +93,7 @@ public class AccountController {
         this.validateEnv();
 
         AccountDto accountDto = accountService.get(userId);
-
-        GenericAccountResponse genericAccountResponse = new GenericAccountResponse(accountDto);
-        return genericAccountResponse;
+        return new GenericAccountResponse(accountDto);
     }
 
     @PutMapping(path = "/update")
@@ -117,8 +110,7 @@ public class AccountController {
 
         AccountDto accountDto =  accountService.update(newAccountDto);
 
-        GenericAccountResponse genericAccountResponse = new GenericAccountResponse(accountDto);
-        return genericAccountResponse;
+        return new GenericAccountResponse(accountDto);
     }
 
     @PutMapping(path = "/update_password")
@@ -146,8 +138,7 @@ public class AccountController {
     public GenericAccountResponse verifyPassword(@RequestBody @Valid VerifyPasswordRequest request) {
         AccountDto accountDto = accountService.verifyPassword(request.getEmail(), request.getPassword());
 
-        GenericAccountResponse genericAccountResponse = new GenericAccountResponse(accountDto);
-        return genericAccountResponse;
+        return new GenericAccountResponse(accountDto);
     }
 
     // RequestPasswordReset sends an email to a user with a password reset link

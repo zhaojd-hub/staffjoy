@@ -1,18 +1,17 @@
 package com.phoebe.staffjoy.account.repo;
 
 import com.phoebe.staffjoy.account.model.Account;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import xyz.staffjoy.account.model.Account;
+import com.phoebe.staffjoy.account.model.AccountSecret;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit4.SpringRunner;
-import xyz.staffjoy.account.model.AccountSecret;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;

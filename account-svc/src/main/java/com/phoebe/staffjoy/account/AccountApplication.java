@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
-@EnableFeignClients(basePackages = {"xyz.staffjoy.mail", "xyz.staffjoy.bot", "xyz.staffjoy.company"})
+@EnableFeignClients(basePackages = {"com.phoebe.staffjoy.mail", "com.phoebe.staffjoy.bot", "com.phoebe.staffjoy.company"})
 public class AccountApplication {
 
     public static void main(String[] args) {

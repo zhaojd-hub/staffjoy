@@ -1,11 +1,11 @@
 package com.phoebe.staffjoy.account.dto;
 
+import com.phoebe.staffjoy.common.validation.PhoneNumber;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.util.StringUtils;
-import xyz.staffjoy.common.validation.PhoneNumber;
 
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
